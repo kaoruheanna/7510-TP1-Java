@@ -23,5 +23,13 @@ public class KnowledgeBaseTest {
 		Assert.assertTrue(this.knowledgeBase.answer("varon (javier)."));
 
 	}
+	
+	@Test
+	public void test2() {
+
+		Assert.assertFalse(this.knowledgeBase.answer("varon (lucia)."));
+
+	}
+	
 
 }
