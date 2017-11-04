@@ -78,7 +78,9 @@ public class InputParserTest {
 		Assert.assertFalse(parser.isValidQuery("varon(juan,lucas"));
 	}
 	
-	// fact input
+	/**
+	 *  fact input
+	 */
 	@Test
 	public void testValidFactInput_shouldPass_1() {
 		InputParser parser = InputParser.getInstance();
@@ -187,5 +189,68 @@ public class InputParserTest {
 		Assert.assertFalse(parser.isValidFactInput("subtract(X, Y, Z) :- add(Y, Z, X)."));
 	}
 	
-
+	/**
+	 * Rule Input
+	 */
+	@Test
+	public void testValidRuleInput_shouldPass_1() {
+		InputParser parser = InputParser.getInstance();
+		Assert.assertTrue(parser.isValidRuleInput("hijo(X, Y) :- varon(X), padre(Y, X)."));
+	}
+	
+	@Test
+	public void testValidRuleInput_shouldFail_1() {
+		InputParser parser = InputParser.getInstance();
+		Assert.assertFalse(parser.isValidRuleInput("hijo"));
+	}
+	
+	@Test
+	public void testValidRuleInput_withFact_shouldFail_1() {
+		InputParser parser = InputParser.getInstance();
+		Assert.assertFalse(parser.isValidRuleInput("varon(juan)."));
+	}
+	
+	@Test
+	public void testValidRuleInput_shouldPass_2() {
+		InputParser parser = InputParser.getInstance();
+		Assert.assertTrue(parser.isValidRuleInput("hija(X, Y) :- mujer(X), padre(Y, X)."));
+	}
+	
+	@Test
+	public void testValidRuleInput_shouldPass_3() {
+		InputParser parser = InputParser.getInstance();
+		Assert.assertTrue(parser.isValidRuleInput("subtract(X, Y, Z) :- add(Y, Z, X)."));
+	}
+	
+	@Test
+	public void testValidRuleInput_shouldFail_2() {
+		InputParser parser = InputParser.getInstance();
+		Assert.assertFalse(parser.isValidRuleInput("hijo(X, Y) :-"));
+	}
+	
+	@Test
+	public void testValidRuleInput_shouldFail_3() {
+		InputParser parser = InputParser.getInstance();
+		Assert.assertFalse(parser.isValidRuleInput("hijo(X, Y) :- mujer"));
+	}
+	
+	@Test
+	public void testValidRuleInput_shouldFail_4() {
+		InputParser parser = InputParser.getInstance();
+		Assert.assertFalse(parser.isValidRuleInput("subtract(X, Y, Z) :- add(Y, Z, X)"));
+	}
+	
+	@Test
+	public void testValidRuleInput_shouldFail_5() {
+		InputParser parser = InputParser.getInstance();
+		Assert.assertFalse(parser.isValidRuleInput("subtract(X, Y, Z) :-add(Y, Z, X)."));
+	}
+	
+	@Test
+	public void testValidRuleInput_shouldFail_6() {
+		InputParser parser = InputParser.getInstance();
+		Assert.assertFalse(parser.isValidRuleInput("hija(X, Y) :- mujer(X),padre(Y, X)."));
+	}
+	
+	
 }
