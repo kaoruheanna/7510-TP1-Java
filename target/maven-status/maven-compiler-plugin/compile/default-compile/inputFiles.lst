@@ -1,2 +1,6 @@
 /home/kaoru/git/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/App.java
+/home/kaoru/git/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/Fact.java
+/home/kaoru/git/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/Askable.java
 /home/kaoru/git/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/KnowledgeBase.java
+/home/kaoru/git/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/Query.java
+/home/kaoru/git/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/InputParser.java
