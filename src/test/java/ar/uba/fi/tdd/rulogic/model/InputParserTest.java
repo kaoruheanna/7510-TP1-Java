@@ -245,7 +245,10 @@ public class InputParserTest {
 	@Test
 	public void testValidRuleInput_shouldPass_1() {
 		InputParser parser = InputParser.getInstance();
-		Assert.assertTrue(parser.isValidRuleInput("hijo(X, Y) :- varon(X), padre(Y, X)."));
+		String ruleString = "hijo(X, Y) :- varon(X), padre(Y, X).";
+		Assert.assertTrue(parser.isValidRuleInput(ruleString));
+		Assert.assertEquals(parser.getRuleInputName(ruleString), "hijo");
+		Assert.assertArrayEquals(parser.getRuleInputArgs(ruleString), new String[]{"varon(X).", "padre(Y, X)."});
 	}
 	
 	@Test
@@ -263,13 +266,19 @@ public class InputParserTest {
 	@Test
 	public void testValidRuleInput_shouldPass_2() {
 		InputParser parser = InputParser.getInstance();
-		Assert.assertTrue(parser.isValidRuleInput("hija(X, Y) :- mujer(X), padre(Y, X)."));
+		String ruleString = "hija(X, Y) :- mujer(X), padre(Y, X).";
+		Assert.assertTrue(parser.isValidRuleInput(ruleString));
+		Assert.assertEquals(parser.getRuleInputName(ruleString), "hija");
+		Assert.assertArrayEquals(parser.getRuleInputArgs(ruleString), new String[]{"mujer(X).", "padre(Y, X)."});
 	}
 	
 	@Test
 	public void testValidRuleInput_shouldPass_3() {
 		InputParser parser = InputParser.getInstance();
-		Assert.assertTrue(parser.isValidRuleInput("subtract(X, Y, Z) :- add(Y, Z, X)."));
+		String ruleString = "subtract(X, Y, Z) :- add(Y, Z, X).";
+		Assert.assertTrue(parser.isValidRuleInput(ruleString));
+		Assert.assertEquals(parser.getRuleInputName(ruleString), "subtract");
+		Assert.assertArrayEquals(parser.getRuleInputArgs(ruleString), new String[]{"add(Y, Z, X)."});
 	}
 	
 	@Test

@@ -16,7 +16,7 @@ public class InputParser {
 		//varon(juan).
 		this.factInputPattern = Pattern.compile("^([a-zA-Z]+)\\(([a-zA-Z]+[a-zA-Z,\\ ]*)\\)\\.$");
 		// hijo(X, Y) :- varon(X), padre(Y, X).
-		this.ruleInputPattern = Pattern.compile("^([a-zA-Z]+)\\([a-zA-Z]+[a-zA-Z,\\ ]*\\) :- ([a-zA-Z]+\\([a-zA-Z]+[a-zA-Z,\\ ]*\\),\\ )*[a-zA-Z]+\\([a-zA-Z]+[a-zA-Z,\\ ]*\\)\\.$");
+		this.ruleInputPattern = Pattern.compile("^([a-zA-Z]+)\\([a-zA-Z]+[a-zA-Z,\\ ]*\\) :- (([a-zA-Z]+\\([a-zA-Z]+[a-zA-Z,\\ ]*\\),\\ )*[a-zA-Z]+\\([a-zA-Z]+[a-zA-Z,\\ ]*\\))\\.$");
 	}
 	
 	public static InputParser getInstance() {
@@ -73,5 +73,35 @@ public class InputParser {
 	public boolean isValidRuleInput(String input) {
 		Matcher m = this.ruleInputPattern.matcher(input);
 		return m.matches();
+	}
+	
+	public String getRuleInputName(String query) {
+		Matcher m = this.ruleInputPattern.matcher(query);
+		if (m.matches()) {
+			return m.group(1);
+		}
+		return null;
+	}
+	
+	public String[] getRuleInputArgs(String query) {
+		Matcher m = this.ruleInputPattern.matcher(query);
+		if (!m.matches()) {
+			return null;
+		}
+		String argsString = m.group(2);
+		String[] ocurrences = argsString.split("\\),\\ ");
+		
+		// A todos menos al ultimo tengo que concatenarle ")"
+		// Y a todos hay que concatenarle "."
+		String[] args = new String[ocurrences.length];
+		for (int i = 0; i < ocurrences.length; i++) {
+			String arg = ocurrences[i];
+			if (i < (ocurrences.length - 1)) {
+				arg = arg.concat(")");
+			}
+			arg = arg.concat(".");
+			args[i] = arg;
+		}
+		return args;
 	}
 }
