@@ -1,6 +1,6 @@
 package ar.uba.fi.tdd.rulogic.model;
 
-import static org.junit.Assert.*;
+import java.util.Arrays;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -17,11 +17,16 @@ public class InputParserTest {
 	public void tearDown() throws Exception {
 	}
 
-	// query
+	/**
+	 * query
+	 */
 	@Test
 	public void testValidQuery_shouldPass_1() {
 		InputParser parser = InputParser.getInstance();
-		Assert.assertTrue(parser.isValidQuery("varon(javier)"));
+		String queryString = "varon(javier)";
+		Assert.assertTrue(parser.isValidQuery(queryString));
+		Assert.assertEquals(parser.getQueryName(queryString), "varon");
+		Assert.assertArrayEquals(parser.getQueryArgs(queryString), new String[]{"javier"});
 	}
 	
 	@Test
@@ -33,31 +38,46 @@ public class InputParserTest {
 	@Test
 	public void testValidQuery_shouldPass__2() {
 		InputParser parser = InputParser.getInstance();
-		Assert.assertTrue(parser.isValidQuery("varon(lucia)"));
+		String queryString = "varon(lucia)";
+		Assert.assertTrue(parser.isValidQuery(queryString));
+		Assert.assertEquals(parser.getQueryName(queryString), "varon");
+		Assert.assertArrayEquals(parser.getQueryArgs(queryString), new String[]{"lucia"});
 	}
 	
 	@Test
 	public void testValidQuery_shouldPass_3() {
 		InputParser parser = InputParser.getInstance();
-		Assert.assertTrue(parser.isValidQuery("mujer(lucia)"));
+		String queryString = "mujer(lucia)";
+		Assert.assertTrue(parser.isValidQuery(queryString));
+		Assert.assertEquals(parser.getQueryName(queryString), "mujer");
+		Assert.assertArrayEquals(parser.getQueryArgs(queryString), new String[]{"lucia"});
 	}
 	
 	@Test
 	public void testValidQuery_shouldPass_4() {
 		InputParser parser = InputParser.getInstance();
-		Assert.assertTrue(parser.isValidQuery("hijo(pepe, juan)"));
+		String queryString = "hijo(pepe, juan)";
+		Assert.assertTrue(parser.isValidQuery(queryString));
+		Assert.assertEquals(parser.getQueryName(queryString), "hijo");
+		Assert.assertArrayEquals(parser.getQueryArgs(queryString), new String[]{"pepe","juan"});
 	}
 	
 	@Test
 	public void testValidQuery_shouldPass_5() {
 		InputParser parser = InputParser.getInstance();
-		Assert.assertTrue(parser.isValidQuery("padre(juan, pepe)"));
+		String queryString = "padre(juan, pepe)";
+		Assert.assertTrue(parser.isValidQuery(queryString));
+		Assert.assertEquals(parser.getQueryName(queryString), "padre");
+		Assert.assertArrayEquals(parser.getQueryArgs(queryString), new String[]{"juan","pepe"});
 	}
 	
 	@Test
 	public void testValidQuery_shouldPass_6() {
 		InputParser parser = InputParser.getInstance();
-		Assert.assertTrue(parser.isValidQuery("add(two, one, zero)"));
+		String queryString = "add(two, one, zero)";
+		Assert.assertTrue(parser.isValidQuery(queryString));
+		Assert.assertEquals(parser.getQueryName(queryString), "add");
+		Assert.assertArrayEquals(parser.getQueryArgs(queryString), new String[]{"two","one", "zero"});
 	}
 	
 	@Test
@@ -84,7 +104,10 @@ public class InputParserTest {
 	@Test
 	public void testValidFactInput_shouldPass_1() {
 		InputParser parser = InputParser.getInstance();
-		Assert.assertTrue(parser.isValidFactInput("varon(juan)."));
+		String factString = "varon(juan).";
+		Assert.assertTrue(parser.isValidFactInput(factString));
+		Assert.assertEquals(parser.getFactInputName(factString), "varon");
+		Assert.assertArrayEquals(parser.getFactInputArgs(factString), new String[]{"juan"});
 	}
 	
 	@Test
@@ -120,55 +143,82 @@ public class InputParserTest {
 	@Test
 	public void testValidFactInput_shouldPass_2() {
 		InputParser parser = InputParser.getInstance();
-		Assert.assertTrue(parser.isValidFactInput("padre(juan, pepe)."));
+		String factString = "padre(juan, pepe).";
+		Assert.assertTrue(parser.isValidFactInput(factString));
+		Assert.assertEquals(parser.getFactInputName(factString), "padre");
+		Assert.assertArrayEquals(parser.getFactInputArgs(factString), new String[]{"juan", "pepe"});
 	}
 	
 	@Test
 	public void testValidFactInput_shouldPass_3() {
 		InputParser parser = InputParser.getInstance();
-		Assert.assertTrue(parser.isValidFactInput("varon(alejandro)."));
+		String factString = "varon(alejandro).";
+		Assert.assertTrue(parser.isValidFactInput(factString));
+		Assert.assertEquals(parser.getFactInputName(factString), "varon");
+		Assert.assertArrayEquals(parser.getFactInputArgs(factString), new String[]{"alejandro"});
 	}
 	
 	@Test
 	public void testValidFactInput_shouldPass_4() {
 		InputParser parser = InputParser.getInstance();
-		Assert.assertTrue(parser.isValidFactInput("padre(juan, pepa)."));
+		String factString = "padre(juan, pepa).";
+		Assert.assertTrue(parser.isValidFactInput(factString));
+		Assert.assertEquals(parser.getFactInputName(factString), "padre");
+		Assert.assertArrayEquals(parser.getFactInputArgs(factString), new String[]{"juan", "pepa"});
 	}
 	
 	@Test
 	public void testValidFactInput_shouldPass_5() {
 		InputParser parser = InputParser.getInstance();
-		Assert.assertTrue(parser.isValidFactInput("padre(hector, maria)."));
+		String factString = "padre(hector, maria).";
+		Assert.assertTrue(parser.isValidFactInput(factString));
+		Assert.assertEquals(parser.getFactInputName(factString), "padre");
+		Assert.assertArrayEquals(parser.getFactInputArgs(factString), new String[]{"hector", "maria"});
 	}
 	
 	@Test
 	public void testValidFactInput_shouldPass_6() {
 		InputParser parser = InputParser.getInstance();
-		Assert.assertTrue(parser.isValidFactInput("add(zero, one, one)."));
+		String factString = "add(zero, one, one).";
+		Assert.assertTrue(parser.isValidFactInput(factString));
+		Assert.assertEquals(parser.getFactInputName(factString), "add");
+		Assert.assertArrayEquals(parser.getFactInputArgs(factString), new String[]{"zero", "one", "one"});
 	}
 	
 	@Test
 	public void testValidFactInput_shouldPass_7() {
 		InputParser parser = InputParser.getInstance();
-		Assert.assertTrue(parser.isValidFactInput("add(zero, zero, zero)."));
+		String factString = "add(zero, zero, zero).";
+		Assert.assertTrue(parser.isValidFactInput(factString));
+		Assert.assertEquals(parser.getFactInputName(factString), "add");
+		Assert.assertArrayEquals(parser.getFactInputArgs(factString), new String[]{"zero", "zero", "zero"});
 	}
 	
 	@Test
 	public void testValidFactInput_shouldPass_8() {
 		InputParser parser = InputParser.getInstance();
-		Assert.assertTrue(parser.isValidFactInput("add(zero, two, two)."));
+		String factString = "add(zero, two, two).";
+		Assert.assertTrue(parser.isValidFactInput(factString));
+		Assert.assertEquals(parser.getFactInputName(factString), "add");
+		Assert.assertArrayEquals(parser.getFactInputArgs(factString), new String[]{"zero", "two", "two"});
 	}
 	
 	@Test
 	public void testValidFactInput_shouldPass_9() {
 		InputParser parser = InputParser.getInstance();
-		Assert.assertTrue(parser.isValidFactInput("mujer(maria)."));
+		String factString = "mujer(maria).";
+		Assert.assertTrue(parser.isValidFactInput(factString));
+		Assert.assertEquals(parser.getFactInputName(factString), "mujer");
+		Assert.assertArrayEquals(parser.getFactInputArgs(factString), new String[]{"maria"});
 	}
 	
 	@Test
 	public void testValidFactInput_shouldPass_10() {
 		InputParser parser = InputParser.getInstance();
-		Assert.assertTrue(parser.isValidFactInput("mujer(cecilia)."));
+		String factString = "mujer(cecilia).";
+		Assert.assertTrue(parser.isValidFactInput(factString));
+		Assert.assertEquals(parser.getFactInputName(factString), "mujer");
+		Assert.assertArrayEquals(parser.getFactInputArgs(factString), new String[]{"cecilia"});
 	}
 	
 	@Test
