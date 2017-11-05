@@ -17,7 +17,7 @@ public class Fact implements Askable {
 	}
 
 	public boolean answer(Query query) {
-		return (query.getName() == this.name) && this.checkArguments(query); 
+		return (query.getName().equals(this.name)) && this.checkArguments(query); 
 	}
 
 }

@@ -40,7 +40,7 @@ public class Rule implements Askable {
 	}
 
 	public boolean answer(Query query) {
-		return (query.getName() == this.name) && this.checkQuery(query);
+		return (query.getName().equals(this.name)) && this.checkQuery(query);
 	}
 
 }
