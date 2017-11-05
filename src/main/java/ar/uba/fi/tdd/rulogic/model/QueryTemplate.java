@@ -12,6 +12,10 @@ public class QueryTemplate {
 		this.templateArgs = templateArgs;
 	}
 	
+	public String getName() {
+		return this.name;
+	}
+	
 	public Query getQuery(ArgumentsMap argumentsMap) {
 		ArrayList<String> args = this.getArguments(argumentsMap);
 		return new Query(this.name, args);

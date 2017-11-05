@@ -1,7 +1,5 @@
 package ar.uba.fi.tdd.rulogic.model;
 
-import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
