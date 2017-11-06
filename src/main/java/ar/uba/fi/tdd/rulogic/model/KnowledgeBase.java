@@ -15,12 +15,48 @@ public class KnowledgeBase {
 		this.askables.add(new Fact(name, arguments));
 	}
 	
+	private void learnRule(String input) {
+		InputParser parser = InputParser.getInstance();
+		
+		RuleBuilder builder = new RuleBuilder();
+				
+		// name
+		String name = parser.getRuleInputName(input);
+		builder.setName(name);
+		
+		// Template Args
+		String[] templateArgumensArray = parser.getRuleInputTemplateArgs(input);
+		ArrayList<String> templateArguments = new ArrayList<String>(Arrays.asList(templateArgumensArray));
+		builder.setArguments(templateArguments);
+		
+		// Query Template
+		for (String rightAskable : parser.getRuleInputArgs(input)) {
+			String rightName = parser.getFactInputName(rightAskable);
+			String[] rightArgsArray = parser.getFactInputArgs(rightAskable);	
+			ArrayList<String> rightArgs = new ArrayList<String>(Arrays.asList(rightArgsArray));
+			QueryTemplate varonTemplate = new QueryTemplate(rightName,rightArgs);
+			builder.addQueryTemplate(varonTemplate);
+		}
+				
+		// Askables
+		for (Askable askable : this.askables) {
+			builder.addAskable(askable);
+		}
+		
+		this.askables.add(builder.buildRule());
+	}
+	
 	public void learn(String input) {
 		input = input.trim();
 		input = input.replaceAll("(\\r|\\n)", "");
 		InputParser parser = InputParser.getInstance();
 		if (parser.isValidFactInput(input)) {
 			this.learnFact(input);
+			return;
+		}
+		if (parser.isValidRuleInput(input)) {
+			this.learnRule(input);
+			return;
 		}
 	}
 	

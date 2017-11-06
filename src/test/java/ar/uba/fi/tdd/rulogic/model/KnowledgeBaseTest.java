@@ -35,6 +35,9 @@ public class KnowledgeBaseTest {
 		}
 	}
 
+	/*
+	 * Facts
+	 */
 	@Test
 	public void testAnswer_parents_shouldPass_1() {
 		Assert.assertTrue(this.knowledgeBaseParents.answer("varon(pepe)"));
@@ -75,5 +78,42 @@ public class KnowledgeBaseTest {
 		Assert.assertTrue(this.knowledgeBaseParents.answer("padre(roberto, cecilia)"));
 	}
 	
+	/*
+	 * Rules
+	 */
+	@Test
+	public void testAnswer_hijo_shouldPass_1() {
+		Assert.assertTrue(this.knowledgeBaseParents.answer("hijo(pepe, juan)"));
+	}
+	
+	@Test
+	public void testAnswer_hijo_shouldFail_1() {
+		Assert.assertFalse(this.knowledgeBaseParents.answer("hija(maria, roberto)"));
+	}
+	
+	@Test
+	public void testAnswer_hijo_shouldPass_2() {
+		Assert.assertTrue(this.knowledgeBaseParents.answer("hijo(alejandro, roberto)"));
+	}
+	
+	@Test
+	public void testAnswer_hijo_shouldPass_3() {
+		Assert.assertTrue(this.knowledgeBaseParents.answer("hija(maria, hector)"));
+	}
+	
+	@Test
+	public void testAnswer_hijo_shouldPass_4() {
+		Assert.assertTrue(this.knowledgeBaseParents.answer("hija(cecilia, roberto)"));
+	}
+	
+	@Test
+	public void testAnswer_hijo_shouldFail_2() {
+		Assert.assertFalse(this.knowledgeBaseParents.answer("hija(roberto, cecilia)"));
+	}
+	
+	@Test
+	public void testAnswer_hijo_shouldFail_3() {
+		Assert.assertFalse(this.knowledgeBaseParents.answer("hijo(cecilia, roberto)"));
+	}
 
 }

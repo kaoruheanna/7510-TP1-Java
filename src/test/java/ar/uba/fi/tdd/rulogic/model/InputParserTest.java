@@ -248,6 +248,7 @@ public class InputParserTest {
 		String ruleString = "hijo(X, Y) :- varon(X), padre(Y, X).";
 		Assert.assertTrue(parser.isValidRuleInput(ruleString));
 		Assert.assertEquals(parser.getRuleInputName(ruleString), "hijo");
+		Assert.assertArrayEquals(parser.getRuleInputTemplateArgs(ruleString), new String[]{"X", "Y"});
 		Assert.assertArrayEquals(parser.getRuleInputArgs(ruleString), new String[]{"varon(X).", "padre(Y, X)."});
 	}
 	
@@ -269,6 +270,7 @@ public class InputParserTest {
 		String ruleString = "hija(X, Y) :- mujer(X), padre(Y, X).";
 		Assert.assertTrue(parser.isValidRuleInput(ruleString));
 		Assert.assertEquals(parser.getRuleInputName(ruleString), "hija");
+		Assert.assertArrayEquals(parser.getRuleInputTemplateArgs(ruleString), new String[]{"X", "Y"});
 		Assert.assertArrayEquals(parser.getRuleInputArgs(ruleString), new String[]{"mujer(X).", "padre(Y, X)."});
 	}
 	
@@ -278,6 +280,7 @@ public class InputParserTest {
 		String ruleString = "subtract(X, Y, Z) :- add(Y, Z, X).";
 		Assert.assertTrue(parser.isValidRuleInput(ruleString));
 		Assert.assertEquals(parser.getRuleInputName(ruleString), "subtract");
+		Assert.assertArrayEquals(parser.getRuleInputTemplateArgs(ruleString), new String[]{"X", "Y", "Z"});
 		Assert.assertArrayEquals(parser.getRuleInputArgs(ruleString), new String[]{"add(Y, Z, X)."});
 	}
 	

@@ -9,6 +9,7 @@ public class InputParser {
 	private Pattern queryPattern;
 	private Pattern factInputPattern;
 	private Pattern ruleInputPattern;
+	private Pattern ruleTemplateArgsPattern;
    
 	private InputParser() {
 		//padre(juan, pepe)
@@ -17,6 +18,7 @@ public class InputParser {
 		this.factInputPattern = Pattern.compile("^([a-zA-Z]+)\\(([a-zA-Z]+[a-zA-Z,\\ ]*)\\)\\.$");
 		// hijo(X, Y) :- varon(X), padre(Y, X).
 		this.ruleInputPattern = Pattern.compile("^([a-zA-Z]+)\\([a-zA-Z]+[a-zA-Z,\\ ]*\\) :- (([a-zA-Z]+\\([a-zA-Z]+[a-zA-Z,\\ ]*\\),\\ )*[a-zA-Z]+\\([a-zA-Z]+[a-zA-Z,\\ ]*\\))\\.$");
+		this.ruleTemplateArgsPattern = Pattern.compile("^[a-zA-Z]+\\(([a-zA-Z]+[a-zA-Z,\\ ]*)\\)$");
 	}
 	
 	public static InputParser getInstance() {
@@ -25,6 +27,10 @@ public class InputParser {
 		}
 		return instance;
 	}
+	
+	/*
+	 * Query
+	 */
 
 	public boolean isValidQuery(String query) {
 		Matcher m = this.queryPattern.matcher(query);
@@ -48,6 +54,10 @@ public class InputParser {
 		return null;
 	}
 	
+	/*
+	 * Fact
+	 */
+	
 	public boolean isValidFactInput(String input) {
 		Matcher m = this.factInputPattern.matcher(input);
 		return m.matches();
@@ -70,6 +80,10 @@ public class InputParser {
 		return null;
 	}
 	
+	/*
+	 * Rule
+	 */
+	
 	public boolean isValidRuleInput(String input) {
 		Matcher m = this.ruleInputPattern.matcher(input);
 		return m.matches();
@@ -79,6 +93,18 @@ public class InputParser {
 		Matcher m = this.ruleInputPattern.matcher(query);
 		if (m.matches()) {
 			return m.group(1);
+		}
+		return null;
+	}
+	
+	// Devuelve ["X","Y","Z"]
+	public String[] getRuleInputTemplateArgs(String query) {
+		int index = query.indexOf(":-");
+		String substr = query.substring(0, index).trim();
+		Matcher m = this.ruleTemplateArgsPattern.matcher(substr);
+		if (m.matches()) {
+			String argsString = m.group(1);
+			return argsString.split(",\\ ");
 		}
 		return null;
 	}
