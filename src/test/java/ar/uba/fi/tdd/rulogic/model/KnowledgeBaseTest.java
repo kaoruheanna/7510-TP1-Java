@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+
+
 public class KnowledgeBaseTest {
 
 	private KnowledgeBase knowledgeBaseParents;
@@ -13,7 +15,7 @@ public class KnowledgeBaseTest {
 		this.initKnowledgeParents();
 	}
 	
-	private void initKnowledgeParents() {
+	private void initKnowledgeParents() throws Exception {
 		String fullInput = "varon(juan).\n" + 
 				"varon(pepe).\n" + 
 				"varon(hector).\n" + 
@@ -39,42 +41,42 @@ public class KnowledgeBaseTest {
 	 * Facts
 	 */
 	@Test
-	public void testAnswer_parents_shouldPass_1() {
+	public void testAnswer_parents_shouldPass_1() throws Exception {
 		Assert.assertTrue(this.knowledgeBaseParents.answer("varon(pepe)"));
 	}
 	
 	@Test
-	public void testAnswer_parents_shouldFail_1() {
+	public void testAnswer_parents_shouldFail_1() throws Exception {
 		Assert.assertFalse(this.knowledgeBaseParents.answer("varon(lucia)"));
 	}
 	
 	@Test
-	public void testAnswer_parents_shouldPass_2() {
+	public void testAnswer_parents_shouldPass_2() throws Exception{
 		Assert.assertTrue(this.knowledgeBaseParents.answer("varon(hector)"));
 	}
 	
 	@Test
-	public void testAnswer_parents_shouldPass_3() {
+	public void testAnswer_parents_shouldPass_3() throws Exception{
 		Assert.assertTrue(this.knowledgeBaseParents.answer("mujer(cecilia)"));
 	}
 	
 	@Test
-	public void testAnswer_parents_shouldFail_2() {
+	public void testAnswer_parents_shouldFail_2() throws Exception{
 		Assert.assertFalse(this.knowledgeBaseParents.answer("mujer(pepe)"));
 	}
 	
 	@Test
-	public void testAnswer_parents_shouldPass_4() {
+	public void testAnswer_parents_shouldPass_4() throws Exception {
 		Assert.assertTrue(this.knowledgeBaseParents.answer("padre(juan, pepe)"));
 	}
 	
 	@Test
-	public void testAnswer_parents_shouldPass_5() {
+	public void testAnswer_parents_shouldPass_5() throws Exception {
 		Assert.assertTrue(this.knowledgeBaseParents.answer("padre(hector, maria)"));
 	}
 	
 	@Test
-	public void testAnswer_parents_shouldPass_6() {
+	public void testAnswer_parents_shouldPass_6() throws Exception {
 		Assert.assertTrue(this.knowledgeBaseParents.answer("padre(roberto, cecilia)"));
 	}
 	
@@ -82,38 +84,38 @@ public class KnowledgeBaseTest {
 	 * Rules
 	 */
 	@Test
-	public void testAnswer_hijo_shouldPass_1() {
+	public void testAnswer_hijo_shouldPass_1() throws Exception {
 		Assert.assertTrue(this.knowledgeBaseParents.answer("hijo(pepe, juan)"));
 	}
 	
 	@Test
-	public void testAnswer_hijo_shouldFail_1() {
+	public void testAnswer_hijo_shouldFail_1() throws Exception {
 		Assert.assertFalse(this.knowledgeBaseParents.answer("hija(maria, roberto)"));
 	}
 	
 	@Test
-	public void testAnswer_hijo_shouldPass_2() {
+	public void testAnswer_hijo_shouldPass_2() throws Exception {
 		Assert.assertTrue(this.knowledgeBaseParents.answer("hijo(alejandro, roberto)"));
 	}
 	
 	@Test
-	public void testAnswer_hijo_shouldPass_3() {
+	public void testAnswer_hijo_shouldPass_3() throws Exception {
 		Assert.assertTrue(this.knowledgeBaseParents.answer("hija(maria, hector)"));
 	}
 	
 	@Test
-	public void testAnswer_hijo_shouldPass_4() {
+	public void testAnswer_hijo_shouldPass_4() throws Exception {
 		Assert.assertTrue(this.knowledgeBaseParents.answer("hija(cecilia, roberto)"));
 	}
 	
 	@Test
-	public void testAnswer_hijo_shouldFail_2() {
+	public void testAnswer_hijo_shouldFail_2() throws Exception {
 		Assert.assertFalse(this.knowledgeBaseParents.answer("hija(roberto, cecilia)"));
 	}
 	
 	@Test
-	public void testAnswer_hijo_shouldFail_3() {
+	public void testAnswer_hijo_shouldFail_3() throws Exception {
 		Assert.assertFalse(this.knowledgeBaseParents.answer("hijo(cecilia, roberto)"));
 	}
-
+	
 }

@@ -1,8 +1,6 @@
 package ar.uba.fi.tdd.rulogic.model;
 
-import java.util.Arrays;
-
-import org.junit.After;
+import ar.uba.fi.tdd.rulogic.model.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,9 +11,6 @@ public class InputParserTest {
 	public void setUp() throws Exception {
 	}
 
-	@After
-	public void tearDown() throws Exception {
-	}
 
 	/**
 	 * query

@@ -1,8 +1,11 @@
 /home/kaoru/git/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/ArgumentsMap.java
+/home/kaoru/git/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/InvalidQueryException.java
+/home/kaoru/git/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/InvalidInputException.java
 /home/kaoru/git/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/QueryTemplate.java
 /home/kaoru/git/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/App.java
 /home/kaoru/git/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/Fact.java
 /home/kaoru/git/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/Askable.java
+/home/kaoru/git/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/KnowledgeBaseNumbersTest.java
 /home/kaoru/git/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/Rule.java
 /home/kaoru/git/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/KnowledgeBase.java
 /home/kaoru/git/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/Query.java

@@ -1,5 +1,6 @@
 package ar.uba.fi.tdd.rulogic.model;
 
+import ar.uba.fi.tdd.rulogic.model.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 

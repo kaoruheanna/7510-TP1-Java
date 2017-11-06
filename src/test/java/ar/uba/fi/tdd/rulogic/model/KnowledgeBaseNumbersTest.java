@@ -15,7 +15,7 @@ public class KnowledgeBaseNumbersTest {
 		this.initKnowledge();
 	}
 	
-	private void initKnowledge() {
+	private void initKnowledge() throws Exception {
 		String fullInput = "add(zero, zero, zero).\n" + 
 				"add(zero, one, one).\n" + 
 				"add(zero, two, two).\n" + 
@@ -37,27 +37,27 @@ public class KnowledgeBaseNumbersTest {
 	 * Facts
 	 */
 	@Test
-	public void testAnswer_parents_shouldPass_1() {
+	public void testAnswer_parents_shouldPass_1() throws Exception {
 		Assert.assertTrue(this.knowledgeBaseParents.answer("add(zero, zero, zero)"));
 	}
 	
 	@Test
-	public void testAnswer_parents_shouldPass_2() {
+	public void testAnswer_parents_shouldPass_2() throws Exception {
 		Assert.assertTrue(this.knowledgeBaseParents.answer("add(two, one, zero)"));
 	}
 	
 	@Test
-	public void testAnswer_parents_shouldPass_3() {
+	public void testAnswer_parents_shouldPass_3() throws Exception {
 		Assert.assertTrue(this.knowledgeBaseParents.answer("add(two, zero, two)"));
 	}
 	
 	@Test
-	public void testAnswer_parents_shouldFail_1() {
+	public void testAnswer_parents_shouldFail_1() throws Exception {
 		Assert.assertFalse(this.knowledgeBaseParents.answer("add(two, one, one)"));
 	}
 	
 	@Test
-	public void testAnswer_parents_shouldFail_2() {
+	public void testAnswer_parents_shouldFail_2() throws Exception {
 		Assert.assertFalse(this.knowledgeBaseParents.answer("add(two, one, eleven)"));
 	}
 	
@@ -65,17 +65,17 @@ public class KnowledgeBaseNumbersTest {
 	 * Rule
 	 */
 	@Test
-	public void testAnswer_subtract_shouldPass_1() {
+	public void testAnswer_subtract_shouldPass_1() throws Exception {
 		Assert.assertTrue(this.knowledgeBaseParents.answer("subtract(two, one, one)"));
 	}
 	
 	@Test
-	public void testAnswer_subtract_shouldFail_1() {
+	public void testAnswer_subtract_shouldFail_1() throws Exception {
 		Assert.assertFalse(this.knowledgeBaseParents.answer("subtract(one, one, two)"));
 	}
 	
 	@Test
-	public void testAnswer_subtract_shouldFail_2() {
+	public void testAnswer_subtract_shouldFail_2() throws Exception {
 		Assert.assertFalse(this.knowledgeBaseParents.answer("root(two, one)"));
 	}
 }

@@ -46,7 +46,8 @@ public class KnowledgeBase {
 		this.askables.add(builder.buildRule());
 	}
 	
-	public void learn(String input) {
+	public void learn(String input) throws InvalidInputException {
+		String originalInput = input;
 		input = input.trim();
 		input = input.replaceAll("(\\r|\\n)", "");
 		InputParser parser = InputParser.getInstance();
@@ -58,6 +59,8 @@ public class KnowledgeBase {
 			this.learnRule(input);
 			return;
 		}
+		
+		throw new InvalidInputException(originalInput);
 	}
 	
 	private Query getQueryFromString(String queryString) {
@@ -72,7 +75,12 @@ public class KnowledgeBase {
 		
 	}
 	
-	public boolean answer(String queryString) {
+	public boolean answer(String queryString) throws InvalidQueryException {
+		InputParser parser = InputParser.getInstance();
+		if (!parser.isValidQuery(queryString)) {
+			throw new InvalidQueryException(queryString);
+		}
+		
 		Query query = this.getQueryFromString(queryString);
 		for (Askable askable : this.askables) {
 			if (askable.answer(query)) {
